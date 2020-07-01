@@ -1,25 +1,25 @@
-const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const path = require("path");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
-  entry: './src/index.js',
+  entry: ["@babel/polyfill", "./src/index.js"],
   output: {
-    path: path.join(__dirname, '/build'),
-    filename: 'index-bundle.js',
+    path: path.join(__dirname, "/build"),
+    filename: "index-bundle.js",
   },
   module: {
     rules: [
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        use: ['babel-loader'],
+        use: ["babel-loader"],
       },
       {
         test: /\.css$/,
         use: [
-          'style-loader',
+          "style-loader",
           {
-            loader: 'css-loader',
+            loader: "css-loader",
             options: {
               importLoaders: 1,
               modules: true,
@@ -30,14 +30,14 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: ['style-loader', 'css-loader'],
+        use: ["style-loader", "css-loader"],
         exclude: /\.module\.css$/,
       },
     ],
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: './public/index.html',
+      template: "./public/index.html",
     }),
   ],
   devServer: {
@@ -46,8 +46,8 @@ module.exports = {
     port: 7070,
     noInfo: true,
     quiet: true,
-    clientLogLevel: 'warning',
-    stats: 'errors-only',
+    clientLogLevel: "warning",
+    stats: "errors-only",
     open: true,
   },
 };
