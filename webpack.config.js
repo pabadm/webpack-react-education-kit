@@ -41,7 +41,7 @@ module.exports = {
     }),
   ],
   devServer: {
-    historyApiFallback: true,
+    // historyApiFallback: true,
     compress: true,
     port: 7070,
     noInfo: true,
