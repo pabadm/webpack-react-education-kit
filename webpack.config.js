@@ -35,32 +35,56 @@ module.exports = {
         exclude: /\.module\.css$/,
       },
       {
-        test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
+        test: /\.woff(2)?(\?[a-z0-9#=&.]+)?$/,
         use: [
           {
             loader: 'url-loader',
             options: {
               name: '[name].[ext]',
-              outputPath: 'Fonts/',
+              outputPath: 'fonts/',
               limit: 10000,
+              mimetype: 'application/font-woff',
             },
           },
         ],
-        exclude: /src/,
+      },
+      {
+        test: /\.(ttf|eot)(\?v=\d+\.\d+\.\d+)?$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[name].[ext]',
+              outputPath: 'fonts/',
+            },
+          },
+        ],
       },
       {
         test: /\.svg$/,
         use: [
           {
+            loader: 'svg-url-loader',
+            options: {
+              name: '[name].[ext]',
+              outputPath: 'icons/',
+              limit: 10000,
+            },
+          },
+        ],
+      },
+      {
+        test: /\.(gif|png|jpeg|jpg)$/,
+        use: [
+          {
             loader: 'url-loader',
             options: {
               name: '[name].[ext]',
-              outputPath: 'Icons/',
+              outputPath: 'images/',
               limit: 8192,
             },
           },
         ],
-        exclude: /public/,
       },
     ],
   },
