@@ -41,10 +41,24 @@ module.exports = {
             loader: 'file-loader',
             options: {
               name: '[name].[ext]',
-              outputPath: 'fonts/',
+              outputPath: 'Fonts/',
             },
           },
         ],
+        exclude: /src/,
+      },
+      {
+        test: /\.svg$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[name].[ext]',
+              outputPath: 'Icons/',
+            },
+          },
+        ],
+        exclude: /public/,
       },
     ],
   },
