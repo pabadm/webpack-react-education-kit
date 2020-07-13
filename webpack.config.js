@@ -38,10 +38,11 @@ module.exports = {
         test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
         use: [
           {
-            loader: 'file-loader',
+            loader: 'url-loader',
             options: {
               name: '[name].[ext]',
               outputPath: 'Fonts/',
+              limit: 10000,
             },
           },
         ],
@@ -51,10 +52,11 @@ module.exports = {
         test: /\.svg$/,
         use: [
           {
-            loader: 'file-loader',
+            loader: 'url-loader',
             options: {
               name: '[name].[ext]',
               outputPath: 'Icons/',
+              limit: 8192,
             },
           },
         ],
