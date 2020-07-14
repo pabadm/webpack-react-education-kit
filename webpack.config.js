@@ -35,7 +35,28 @@ module.exports = {
         exclude: /\.module\.css$/,
       },
       {
-        test: /\.woff(2)?(\?[a-z0-9#=&.]+)?$/,
+        test: /\.s[ac]ss$/i,
+        use: [
+          'style-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              importLoaders: 1,
+              modules: true,
+            },
+          },
+          'postcss-loader',
+          'sass-loader',
+        ],
+        include: /\.module\.s[ac]ss$/i,
+      },
+      {
+        test: /\.s[ac]ss$/i,
+        use: ['style-loader', 'css-loader', 'postcss-loader', 'sass-loader'],
+        exclude: /\.module\.s[ac]ss$/i,
+      },
+      {
+        test: /\.(woff(2)?|svg)(\?[a-z0-9#=&.]+)?$/,
         use: [
           {
             loader: 'url-loader',
@@ -47,6 +68,7 @@ module.exports = {
             },
           },
         ],
+        include: [/Fonts/, /fonts/],
       },
       {
         test: /\.(ttf|eot)(\?v=\d+\.\d+\.\d+)?$/,
@@ -62,16 +84,8 @@ module.exports = {
       },
       {
         test: /\.svg$/,
-        use: [
-          {
-            loader: 'svg-url-loader',
-            options: {
-              name: '[name].[ext]',
-              outputPath: 'icons/',
-              limit: 10000,
-            },
-          },
-        ],
+        use: ['@svgr/webpack'],
+        exclude: [/Fonts/, /fonts/],
       },
       {
         test: /\.(gif|png|jpeg|jpg)$/,
